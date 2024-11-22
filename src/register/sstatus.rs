@@ -115,6 +115,16 @@ impl Sstatus {
     pub fn set_spp(&mut self, val: SPP) {
         self.bits.set_bit(8, val == SPP::Supervisor);
     }
+
+    #[inline]
+    pub fn set_sum(&mut self) {
+        self.bits.set_bit(18, true);
+    }
+
+    #[inline]
+    pub fn clear_sum(&mut self) {
+        self.bits.set_bit(18, false);
+    }
 }
 
 read_csr_as!(Sstatus, 0x100, __read_sstatus);
